@@ -10,7 +10,7 @@ Python package management system up to date (python -m pip install --upgrade pip
 Python modules installed:
 
     PySimpleGUIQt (pip install --upgrade PySimpleGUIQt)
-    PySide2 installed (pip install PySide2)
+    PySide2 (pip install PySide2)
 
 ## Prerequisites for the Arduino
 
