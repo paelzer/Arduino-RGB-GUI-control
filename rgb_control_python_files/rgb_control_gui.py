@@ -11,15 +11,14 @@ off    = "000000" # Turns the RGB LED pins off
 
 lineLength = 59 # Lenght for the 2 horizontal lines in the gui 
 
-# Opens the serial connection
 # Find your COM port number in the Arduino IDE and change the line below accordingly 
-ser = serial.Serial('COM5', 9600)
-
+comPort = 'COM5'
+    
 # Function to send the color value as decimal via serial port to the Arduino
 def requestColor(color):
-    rgbSelectValue = str(int(color, 16))
+    rgbSelectValue = str(int(color, 16)) # puts the color hex value as decimal in a string
     print(rgbSelectValue)
-    ser.write(("#" + rgbSelectValue).encode())    
+    ser.write(("#" + rgbSelectValue).encode())
 
 # **************************************** Defines the GUI *****************************************************************************************************
 #
@@ -34,6 +33,14 @@ layout = [
             [sg.Button('LEDs off', size=(207,40), key='Off'), sg.Button('Exit', size=(207,40), key='exit')]
 
           ]
+
+# Open the serial port or show an error message and exit if not working
+#
+try:
+    ser = serial.Serial(comPort, 9600)
+except:
+    sg.Popup("Couldn't open the serial port.\nWrong COM port defined or\nArduino not connected?")
+    exit()
 
 window = sg.Window('RGB Color Selector - v:1.0 -', no_titlebar=False).Layout(layout)
 
