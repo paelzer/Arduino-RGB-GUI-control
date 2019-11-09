@@ -26,3 +26,11 @@ This project allows you to control an RGB - LED attached to an Arduino UNO from 
       LED pin for green connected to Arduino pin 10
       LED pin for blue connected to Arduino pin 11
       LED ground pin to Arduino GND pin 
+
+## Software preparation
+
+* Adjust the COM port number definition in the rgb_control_gui.py file to match the COM port number on your system:
+      For example if your COM port has no. 2 adjust the line as follows:      
+
+            ser = serial.Serial('COM2', 9600)
+            
