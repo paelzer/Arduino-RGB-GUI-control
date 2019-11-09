@@ -14,11 +14,15 @@ This project allows you to control an RGB - LED attached to an Arduino UNO from 
       PySide2 (pip install PySide2)
 
 
-## Prerequisites for the Arduino
+## Prerequisites for the Arduino part of the project
 
 * Arduino IDE installed (https://www.arduino.cc/en/main/software)
-* An RGB LED attached connected to the Arduino UNO
 
-      LED Pin for red connected to Arduino Pin 9
-      LED Pin for green connected to Arduino Pin 10
-      LED Pin for blue connected to Arduino Pin 11
+## RGB LED hook up
+
+* The RGB LED should be connected to the Arduino UNO as follows:
+
+      LED pin for red connected to Arduino pin 9
+      LED pin for green connected to Arduino pin 10
+      LED pin for blue connected to Arduino pin 11
+      LED ground pin to Arduino GND pin 
