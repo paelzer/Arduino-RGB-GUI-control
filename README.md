@@ -30,7 +30,8 @@ This project allows you to control an RGB - LED attached to an Arduino UNO from 
 ## Software preparation
 
 * Adjust the COM port number definition in the rgb_control_gui.py file to match the COM port number on your system:
-      For example if your COM port has no. 2 adjust the line as follows:      
+      For example if your COM port has no. 2 adjust the line as follows and save the file:      
 
             ser = serial.Serial('COM2', 9600)
             
+* Flash the rgb_control.ino file to the Arduino Uno
