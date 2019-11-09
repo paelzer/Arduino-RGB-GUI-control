@@ -16,5 +16,5 @@ This project allows you to control an RGB - LED strip attached to an Arduino UNO
 
 ## Prerequisites for the Arduino
 
->Arduino IDE installed (https://www.arduino.cc/en/main/software)
+* Arduino IDE installed (https://www.arduino.cc/en/main/software)
 
