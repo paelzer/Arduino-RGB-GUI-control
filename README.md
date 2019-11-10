@@ -29,9 +29,9 @@
 
 ## Software preparation
 
-* Adjust the COM port number definition in the rgb_control_gui.py file to match the COM port number on your system:
-      For example if your COM port has no. 2 adjust the line as follows and save the file:      
-
-            ser = serial.Serial('COM2', 9600)
-            
 * Flash the rgb_control.ino file to the Arduino Uno
+
+* Connect the Arduino via USB to your PC or notebook
+
+* Run the rgb_control_gui.py Python file. The COM port your Arduino is connected to should be detected automatically.
+  Click the buttons in the GUI. The color of the RGB LED should change accordingly.
