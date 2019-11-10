@@ -2,6 +2,10 @@ import serial
 import serial.tools.list_ports
 import PySimpleGUIQt as sg
 
+# Default state for the while loop that connects to the Arduino COM port
+arduinoConnected = False
+
+# List the available COM ports will be added to
 comPorts = [], []
 
 # Color codes for the 4 predefined colors in the gui
@@ -10,19 +14,22 @@ green  = "00ff00"
 blue   = "0000ff"
 purple = "9e0083"
 
-off    = "000000" # Turns the RGB LED pins off
+# Turns the RGB LED pins off
+off    = "000000"
 
-lineLength = 59 # Lenght for the 2 horizontal lines in the gui 
+# Lenght for the 2 horizontal lines in the gui
+lineLength = 59
 
-# Find your COM port number in the Arduino IDE and change the line below accordingly 
-# comPort = 'COM5'
-    
+
 # Function to send the color value as decimal via serial port to the Arduino
+#
 def requestColor(color):
     rgbSelectValue = str(int(color, 16)) # puts the color hex value as decimal in a string
     ser.write(("#" + rgbSelectValue).encode())
 
+
 # Function to return available COM ports and detect current Arduino COM port
+#
 def getSerialPorts():
     ports = serial.tools.list_ports.comports(include_links=False)
     for i, e in enumerate(ports):
@@ -33,15 +40,17 @@ def getSerialPorts():
         comPorts[1].append(e[1])
     return comPorts, comPort
 
-comPorts, comPort = getSerialPorts() # put available serial ports into comPorts list and define Arduino COM port
 
-# Open the serial port or show an error message and exit if not working
+# Sets the COM port the Arduino is connected to or shows an error message if not working
 #
-try:
-    ser = serial.Serial(comPort, 9600)
-except:
-    sg.Popup("Couldn't open the serial port.\nWrong COM port defined or\nArduino not connected?")
-    exit()
+while(not arduinoConnected):
+    try:
+        comPorts, comPort = getSerialPorts()
+        ser = serial.Serial(comPort, 9600)
+        arduinoConnected = True
+    except:
+        sg.Popup("Couldn't open serial port!\nConnect your Arduino and click -OK-")
+
 
 # **************************************** Defines the GUI *****************************************************************************************************
 #
@@ -57,11 +66,10 @@ layout = [
 
           ]
 
+window = sg.Window('RGB Color Selector - v:1.0 -', no_titlebar=False).Layout(layout)
 
 # **************************************** Runs the GUI ********************************************************************************************************
 #
-window = sg.Window('RGB Color Selector - v:1.0 -', no_titlebar=False).Layout(layout)
-
 while True:
     event, values = window.Read()
     
