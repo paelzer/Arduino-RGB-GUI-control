@@ -54,7 +54,7 @@ while(not arduinoConnected):
         if decision == "Cancel" or decision is None:
             exit()
 
-print("comPort_:", comPort)
+
 # **************************************** Defines the GUI *****************************************************************************************************
 #
 layout = [
