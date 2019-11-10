@@ -31,6 +31,7 @@ def getSerialPorts():
     return comPorts
 
 comPorts = getSerialPorts() # put available serial ports into comPorts list
+print(comPorts)
 
 # Open the serial port or show an error message and exit if not working
 #
