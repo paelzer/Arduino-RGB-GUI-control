@@ -49,6 +49,7 @@ while(not arduinoConnected):
         ser = serial.Serial(comPort, 9600)
         arduinoConnected = True
     except:
+        comPorts = [], []
         decision = sg.PopupOKCancel("Couldn't open serial port!\nConnect your Arduino and click -OK-")
         if decision == "Cancel" or decision is None:
             exit()
