@@ -49,9 +49,11 @@ while(not arduinoConnected):
         ser = serial.Serial(comPort, 9600)
         arduinoConnected = True
     except:
-        sg.Popup("Couldn't open serial port!\nConnect your Arduino and click -OK-")
+        decision = sg.PopupOKCancel("Couldn't open serial port!\nConnect your Arduino and click -OK-")
+        if decision == "Cancel" or decision is None:
+            exit()
 
-
+print("comPort_:", comPort)
 # **************************************** Defines the GUI *****************************************************************************************************
 #
 layout = [
@@ -62,7 +64,8 @@ layout = [
             [sg.Text('_'  * lineLength)],
             [sg.ColorChooserButton("", button_color=sg.TRANSPARENT_BUTTON, image_filename="rgb.png", image_subsample=2, size=(207, 40), border_width=0, key="rgbSelect"), sg.Button('Apply selected color', size=(207,40), key="apply"), ],
             [sg.Text('_'  * lineLength)],
-            [sg.Button('LEDs off', size=(207,40), key='Off'), sg.Button('Exit', size=(207,40), key='exit')]
+            [sg.Button('LEDs off', size=(207,40), key='Off'), sg.Button('Exit', size=(207,40), key='exit')],
+            [sg.Text("GUI currently connected to " + comPort)]
 
           ]
 
