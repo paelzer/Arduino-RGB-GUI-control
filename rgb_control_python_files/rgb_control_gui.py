@@ -49,27 +49,29 @@ while(not arduinoConnected):
         ser = serial.Serial(comPort, 9600)
         arduinoConnected = True
     except:
+        comPorts = [], []
         decision = sg.PopupOKCancel("Couldn't open serial port!\nConnect your Arduino and click -OK-")
         if decision == "Cancel" or decision is None:
             exit()
-
+            
 
 # **************************************** Defines the GUI *****************************************************************************************************
 #
 layout = [
 
-            [sg.Text('Select case illumination color...')],        
+            [sg.Text('Select RGB LED color...')],        
             [sg.Button('RED', button_color = ("white", "red"), key='red', size=(207,40)), sg.Button('GREEN', button_color = ("white", "green"), key='green', size=(207,40))],
             [sg.Button('BLUE', button_color = ("white", "blue"), key='blue', size=(207,40)), sg.Button('PURPLE', button_color = ("white", "purple"), key='purple', size=(207,40))],
             [sg.Text('_'  * lineLength)],
             [sg.ColorChooserButton("", button_color=sg.TRANSPARENT_BUTTON, image_filename="rgb.png", image_subsample=2, size=(207, 40), border_width=0, key="rgbSelect"), sg.Button('Apply selected color', size=(207,40), key="apply"), ],
             [sg.Text('_'  * lineLength)],
             [sg.Button('LEDs off', size=(207,40), key='Off'), sg.Button('Exit', size=(207,40), key='exit')],
-            [sg.Text("GUI currently connected to " + comPort)]
+            [sg.Text("GUI currently connected to " + comPort), sg.Combo(comPorts[0], key="comPortDropdown", default_value=comPort, enable_events=True, size=(7, 1))]
 
           ]
 
 window = sg.Window('RGB Color Selector - v:1.0 -', no_titlebar=False).Layout(layout)
+
 
 # **************************************** Runs the GUI ********************************************************************************************************
 #
