@@ -1,5 +1,8 @@
 import serial
+import serial.tools.list_ports
 import PySimpleGUIQt as sg
+
+comPorts = []
 
 # Color codes for the 4 predefined colors in the gui
 red    = "ff0000"
@@ -20,6 +23,23 @@ def requestColor(color):
     print(rgbSelectValue)
     ser.write(("#" + rgbSelectValue).encode())
 
+# Function to return available serial ports
+def getSerialPorts():
+    ports = serial.tools.list_ports.comports(include_links=False)
+    for i, e in enumerate(ports):
+        comPorts.append(e[1])
+    return comPorts
+
+comPorts = getSerialPorts() # put available serial ports into comPorts list
+
+# Open the serial port or show an error message and exit if not working
+#
+try:
+    ser = serial.Serial(comPort, 9600)
+except:
+    sg.Popup("Couldn't open the serial port.\nWrong COM port defined or\nArduino not connected?")
+    exit()
+
 # **************************************** Defines the GUI *****************************************************************************************************
 #
 layout = [
@@ -34,18 +54,11 @@ layout = [
 
           ]
 
-# Open the serial port or show an error message and exit if not working
-#
-try:
-    ser = serial.Serial(comPort, 9600)
-except:
-    sg.Popup("Couldn't open the serial port.\nWrong COM port defined or\nArduino not connected?")
-    exit()
-
-window = sg.Window('RGB Color Selector - v:1.0 -', no_titlebar=False).Layout(layout)
 
 # **************************************** Runs the GUI ********************************************************************************************************
 #
+window = sg.Window('RGB Color Selector - v:1.0 -', no_titlebar=False).Layout(layout)
+
 while True:
     event, values = window.Read()
     
