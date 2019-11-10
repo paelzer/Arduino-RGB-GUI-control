@@ -2,7 +2,7 @@ import serial
 import serial.tools.list_ports
 import PySimpleGUIQt as sg
 
-comPorts = []
+comPorts = [], []
 
 # Color codes for the 4 predefined colors in the gui
 red    = "ff0000"
@@ -15,23 +15,25 @@ off    = "000000" # Turns the RGB LED pins off
 lineLength = 59 # Lenght for the 2 horizontal lines in the gui 
 
 # Find your COM port number in the Arduino IDE and change the line below accordingly 
-comPort = 'COM5'
+# comPort = 'COM5'
     
 # Function to send the color value as decimal via serial port to the Arduino
 def requestColor(color):
     rgbSelectValue = str(int(color, 16)) # puts the color hex value as decimal in a string
-    print(rgbSelectValue)
     ser.write(("#" + rgbSelectValue).encode())
 
-# Function to return available serial ports
+# Function to return available COM ports and detect current Arduino COM port
 def getSerialPorts():
     ports = serial.tools.list_ports.comports(include_links=False)
     for i, e in enumerate(ports):
-        comPorts.append(e[1])
-    return comPorts
+        if "Arduino" in e[1]:
+            print("Arduino available on", e[0])
+            comPort = e[0]
+        comPorts[0].append(e[0])
+        comPorts[1].append(e[1])
+    return comPorts, comPort
 
-comPorts = getSerialPorts() # put available serial ports into comPorts list
-print(comPorts)
+comPorts, comPort = getSerialPorts() # put available serial ports into comPorts list and define Arduino COM port
 
 # Open the serial port or show an error message and exit if not working
 #
@@ -85,7 +87,10 @@ while True:
         requestColor(off)
 
     elif event  == 'apply':
-        requestColor((values["rgbSelect"])[1:])
+        if values["rgbSelect"] != None:
+            requestColor((values["rgbSelect"])[1:])
+        else:
+            sg.Popup("Select a color first!", no_titlebar=True)
 
 window.Close() # Exits from the gui loop
 ser.close() # Closes the serial connection
