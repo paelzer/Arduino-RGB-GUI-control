@@ -9,7 +9,7 @@ It has been tested sucessfully with following setup:
 
 * Arduino IDE 1.8.9
 
-* Arduino UNO (other Arduino boards should work as well with some modifications)
+* Arduino UNO (other Arduino boards work as well with some modifications depending on the model)
 
 ## Prerequisites for the Python GUI:
 
