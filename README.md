@@ -3,7 +3,7 @@
 
 It has been tested sucessfully with following setup:
 
-* Windows 10 x64x
+* Windows 10 x64
 
 * Python 3
 
