@@ -33,11 +33,15 @@ def requestColor(color):
 def getSerialPorts():
     ports = serial.tools.list_ports.comports(include_links=False)
     for i, e in enumerate(ports):
+        # Debug (output of available hardware serial ports)
+        print(e[1])
+        # Trying to automatically detect Arduino COM port by looking for "Arduino" string in information of all available hardware serial ports
         if "Arduino" in e[1]:
             print("Arduino available on", e[0])
             comPort = e[0]
         comPorts[0].append(e[0])
         comPorts[1].append(e[1])
+        print(comPorts)
     return comPorts, comPort
 
 
@@ -49,10 +53,20 @@ while(not arduinoConnected):
         ser = serial.Serial(comPort, 9600)
         arduinoConnected = True
     except:
+        # Automatic Arduino COM port detection failed so giving the user the possibility to manually enter the COM port
+        comPort = sg.PopupGetText(('Connect your Arduino and enter Arduino COM port!\nAvailable hardware COM ports are:\n' + str(comPorts[0])), 'Enter COM port')
         comPorts = [], []
-        decision = sg.PopupOKCancel("Couldn't open serial port!\nConnect your Arduino and click -OK-")
-        if decision == "Cancel" or decision is None:
+        if comPort == "Cancel" or comPort is None:
             exit()
+        try:
+            # Try to connect to the manually specified COM port
+            ser = serial.Serial(comPort, 9600)
+            arduinoConnected = True
+        except:
+            # Manual input of the COM port failed so giving the user the possibility to try again or leave
+            decision = sg.PopupOKCancel("The COM port you entered is not available.\nClick OK to try again or Cancel to exit!")
+            if decision == "Cancel" or decision is None:
+                exit()
             
 
 # **************************************** Defines the GUI *****************************************************************************************************
@@ -66,7 +80,7 @@ layout = [
             [sg.ColorChooserButton("", button_color=sg.TRANSPARENT_BUTTON, image_filename="rgb.png", image_subsample=2, size=(207, 40), border_width=0, key="rgbSelect"), sg.Button('Apply selected color', size=(207,40), key="apply"), ],
             [sg.Text('_'  * lineLength)],
             [sg.Button('LEDs off', size=(207,40), key='Off'), sg.Button('Exit', size=(207,40), key='exit')],
-            [sg.Text("GUI currently connected to " + comPort), sg.Combo(comPorts[0], key="comPortDropdown", default_value=comPort, enable_events=True, size=(7, 1))]
+            [sg.Text("...currently connected to " + comPort)]
 
           ]
 
