@@ -1,3 +1,9 @@
+# *************************************************************************************
+#
+#    A GUI built with PySimpleGUI to control an RGB LED connected to an Arduino UNO
+#
+# *************************************************************************************
+
 import serial
 import serial.tools.list_ports
 import PySimpleGUIQt as sg
@@ -80,11 +86,11 @@ layout = [
             [sg.ColorChooserButton("", button_color=sg.TRANSPARENT_BUTTON, image_filename="rgb.png", image_subsample=2, size=(207, 40), border_width=0, key="rgbSelect"), sg.Button('Apply selected color', size=(207,40), key="apply"), ],
             [sg.Text('_'  * lineLength)],
             [sg.Button('LEDs off', size=(207,40), key='Off'), sg.Button('Exit', size=(207,40), key='exit')],
-            [sg.Text("...currently connected to " + comPort)]
+            [sg.Text("...currently connected to " + comPort), sg.Text((" " * 39) + "p43lz3r", text_color="blue")]
 
           ]
 
-window = sg.Window('RGB Color Selector - v:1.0 -', no_titlebar=False).Layout(layout)
+window = sg.Window('RGB Color Selector', no_titlebar=False).Layout(layout)
 
 
 # **************************************** Runs the GUI ********************************************************************************************************
