@@ -40,7 +40,12 @@ It has been tested sucessfully with following setup:
 * Connect the Arduino via USB to your PC or notebook
 
 ## Pinout
-Hardware bla bla
+Required hardware components:
+
+      3x Resistor 220 Ohm
+      RGB LED (common cathode - type)
+      Arduino UNO
+
 <b>Click to enlarge:</b> 
 </br> </br>
 <img src="https://i.imgur.com/NEBTWak.png" width="989">
