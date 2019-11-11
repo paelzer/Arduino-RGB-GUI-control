@@ -50,6 +50,11 @@ Required hardware components:
 </br> </br>
 <img src="https://i.imgur.com/NEBTWak.png" width="600">
 
+Required hardware components:
+
+      3x Resistor 220 Ohm
+      RGB LED (common cathode - type)
+      Arduino UNO
 
 ## Start the Python GUI
 
