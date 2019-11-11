@@ -48,7 +48,7 @@ Required hardware components:
 
 <b>Click to enlarge:</b> 
 </br> </br>
-<img src="https://i.imgur.com/NEBTWak.png" width="989">
+<img src="https://i.imgur.com/NEBTWak.png" width="600">
 
 
 ## Start the Python GUI
