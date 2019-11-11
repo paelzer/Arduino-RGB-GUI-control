@@ -1,5 +1,5 @@
 # Arduino RGB LED GUI control
-**This project allows you to control an RGB - LED connected to an Arduino UNO from your PC or notebook via a color selector GUI built with PySimpleGUI.**
+**This project allows you to control an RGB - LED connected to an Arduino UNO from your PC or notebook via a color selector GUI built with the amazing [PySimpleGUI](https://pysimplegui.readthedocs.io/en/latest/).**
 
 It has been tested sucessfully with following setup:
 
