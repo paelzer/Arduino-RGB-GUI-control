@@ -14,7 +14,7 @@ It has been tested sucessfully with following setup:
 ## Prerequisites for the Python GUI:
 
 
-* Python3 installed (https://www.python.org/downloads/)
+* [Python3](https://www.python.org/downloads/) installed 
 
 * Python package management system up to date (python -m pip install --upgrade pip)
 
@@ -26,7 +26,7 @@ It has been tested sucessfully with following setup:
 
 ## Prerequisites for the Arduino part of the project
 
-* Arduino IDE installed (https://www.arduino.cc/en/main/software)
+* [Arduino IDE](https://www.arduino.cc/reference/en/) installed
 
 * Flash the rgb_control.ino file to the Arduino Uno
 
@@ -38,6 +38,13 @@ It has been tested sucessfully with following setup:
       LED ground pin to Arduino GND pin 
 
 * Connect the Arduino via USB to your PC or notebook
+
+## Pinout
+Hardware bla bla
+<b>Click to enlarge:</b> 
+</br> </br>
+<img src="http://i.imgur.com/JsbguPV.jpg" width="800">
+
 
 ## Start the Python GUI
 
