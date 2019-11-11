@@ -1,3 +1,9 @@
+# ************************************************************************************************
+#
+#    A GUI built with the amazing PySimpleGUI to control an RGB LED connected to an Arduino UNO
+#
+# ************************************************************************************************
+
 import serial
 import serial.tools.list_ports
 import PySimpleGUIQt as sg
@@ -28,20 +34,20 @@ def requestColor(color):
     ser.write(("#" + rgbSelectValue).encode())
 
 
-# Function to return available COM ports and detect current Arduino COM port
+# Function to return available hardware serial ports and (if possible) detect current Arduino COM port
 #
 def getSerialPorts():
     ports = serial.tools.list_ports.comports(include_links=False)
     for i, e in enumerate(ports):
+        # Trying to automatically detect Arduino COM port by looking for "Arduino" string in information of all available hardware serial ports
         if "Arduino" in e[1]:
-            print("Arduino available on", e[0])
             comPort = e[0]
         comPorts[0].append(e[0])
         comPorts[1].append(e[1])
     return comPorts, comPort
 
 
-# Sets the COM port the Arduino is connected to or shows an error message if not working
+# Sets the COM port the Arduino is connected to automatically or requests manual COM port input from user if not working
 #
 while(not arduinoConnected):
     try:
@@ -49,28 +55,39 @@ while(not arduinoConnected):
         ser = serial.Serial(comPort, 9600)
         arduinoConnected = True
     except:
+        # Automatic Arduino COM port detection failed so giving the user the possibility to manually enter the COM port
+        comPort = sg.PopupGetText(('Connect your Arduino and enter Arduino COM port!\nAvailable hardware COM ports are:\n' + str(comPorts[0])), 'Enter COM port')
         comPorts = [], []
-        decision = sg.PopupOKCancel("Couldn't open serial port!\nConnect your Arduino and click -OK-")
-        if decision == "Cancel" or decision is None:
+        if comPort == "Cancel" or comPort is None:
             exit()
-
+        try:
+            # Try to connect to the manually specified COM port
+            ser = serial.Serial(comPort, 9600)
+            arduinoConnected = True
+        except:
+            # Manual input of the COM port failed so giving the user the possibility to try again or leave
+            decision = sg.PopupOKCancel("The COM port you entered is not available.\nClick OK to try again or Cancel to exit!")
+            if decision == "Cancel" or decision is None:
+                exit()
+            
 
 # **************************************** Defines the GUI *****************************************************************************************************
 #
 layout = [
 
-            [sg.Text('Select case illumination color...')],        
+            [sg.Text('Select RGB LED color...')],        
             [sg.Button('RED', button_color = ("white", "red"), key='red', size=(207,40)), sg.Button('GREEN', button_color = ("white", "green"), key='green', size=(207,40))],
             [sg.Button('BLUE', button_color = ("white", "blue"), key='blue', size=(207,40)), sg.Button('PURPLE', button_color = ("white", "purple"), key='purple', size=(207,40))],
             [sg.Text('_'  * lineLength)],
             [sg.ColorChooserButton("", button_color=sg.TRANSPARENT_BUTTON, image_filename="rgb.png", image_subsample=2, size=(207, 40), border_width=0, key="rgbSelect"), sg.Button('Apply selected color', size=(207,40), key="apply"), ],
             [sg.Text('_'  * lineLength)],
             [sg.Button('LEDs off', size=(207,40), key='Off'), sg.Button('Exit', size=(207,40), key='exit')],
-            [sg.Text("GUI currently connected to " + comPort)]
+            [sg.Text("...currently connected to " + comPort), sg.Text((" " * 39) + "p43lz3r", text_color="blue")]
 
           ]
 
-window = sg.Window('RGB Color Selector - v:1.0 -', no_titlebar=False).Layout(layout)
+window = sg.Window('RGB Color Selector', no_titlebar=False).Layout(layout)
+
 
 # **************************************** Runs the GUI ********************************************************************************************************
 #
@@ -80,7 +97,6 @@ while True:
     # Checks which of the buttons has been clicked and calls the requestColor function with the according value
     if event is None or event == 'exit':
         requestColor(off)
-        print("Exit!")
         break
     
     elif event  == 'red':
