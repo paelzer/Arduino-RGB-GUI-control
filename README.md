@@ -43,7 +43,7 @@ It has been tested sucessfully with following setup:
 Hardware bla bla
 <b>Click to enlarge:</b> 
 </br> </br>
-<img src="http://i.imgur.com/JsbguPV.jpg" width="800">
+<img src="https://i.imgur.com/NEBTWak.png width="800">
 
 
 ## Start the Python GUI
