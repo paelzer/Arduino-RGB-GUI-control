@@ -1,8 +1,8 @@
-# *************************************************************************************
+# ************************************************************************************************
 #
-#    A GUI built with PySimpleGUI to control an RGB LED connected to an Arduino UNO
+#    A GUI built with the amazing PySimpleGUI to control an RGB LED connected to an Arduino UNO
 #
-# *************************************************************************************
+# ************************************************************************************************
 
 import serial
 import serial.tools.list_ports
@@ -39,15 +39,11 @@ def requestColor(color):
 def getSerialPorts():
     ports = serial.tools.list_ports.comports(include_links=False)
     for i, e in enumerate(ports):
-        # Debug (output of available hardware serial ports)
-        print(e[1])
         # Trying to automatically detect Arduino COM port by looking for "Arduino" string in information of all available hardware serial ports
         if "Arduino" in e[1]:
-            print("Arduino available on", e[0])
             comPort = e[0]
         comPorts[0].append(e[0])
         comPorts[1].append(e[1])
-        print(comPorts)
     return comPorts, comPort
 
 
@@ -101,7 +97,6 @@ while True:
     # Checks which of the buttons has been clicked and calls the requestColor function with the according value
     if event is None or event == 'exit':
         requestColor(off)
-        print("Exit!")
         break
     
     elif event  == 'red':
