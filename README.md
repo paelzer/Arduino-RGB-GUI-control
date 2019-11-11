@@ -60,3 +60,8 @@ Required hardware components:
 
 Run the rgb_control_gui.py Python file. The COM port your Arduino is connected to should be detected automatically - if this fails you can enter the COM port manually. A list of available hardware serial ports will show up in a popup window.
   Click the buttons in the GUI. The color of the RGB LED should change accordingly.
+  
+</br> </br>
+<img src="https://i.imgur.com/EXJVYeP.jpg">
+  
+  
