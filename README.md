@@ -21,7 +21,7 @@ It has been tested sucessfully with following setup:
 * Python modules installed:
 
       PySerial (pip install pyserial)
-      PySimpleGUIQt (pip install --upgrade PySimpleGUIQt)
+      PySimpleGUIQt (pip install pysimpleguiqt)
       PySide2 (pip install PySide2)
 
 ## Prerequisites for the Arduino part of the project
