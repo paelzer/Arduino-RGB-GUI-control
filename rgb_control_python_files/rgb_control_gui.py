@@ -81,7 +81,7 @@ layout = [
             [sg.Text('_'  * lineLength)],
             [sg.ColorChooserButton("", button_color=sg.TRANSPARENT_BUTTON, image_filename="rgb.png", image_subsample=2, size=(207, 40), border_width=0, key="rgbSelect"), sg.Button('Apply selected color', size=(207,40), key="apply"), ],
             [sg.Text('_'  * lineLength)],
-            [sg.Button('LEDs off', size=(207,40), key='Off'), sg.Button('Exit', size=(207,40), key='exit')],
+            [sg.Button('LED off', size=(207,40), key='Off'), sg.Button('Exit', size=(207,40), key='exit')],
             [sg.Text("...currently connected to " + comPort), sg.Text((" " * 39) + "p43lz3r", text_color="blue")]
 
           ]
