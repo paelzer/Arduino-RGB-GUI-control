@@ -28,7 +28,7 @@ def requestColor(color):
     ser.write(("#" + rgbSelectValue).encode())
 
 
-# Function to return available COM ports and detect current Arduino COM port
+# Function to return available hardware serial ports and (if possible) detect current Arduino COM port
 #
 def getSerialPorts():
     ports = serial.tools.list_ports.comports(include_links=False)
@@ -45,7 +45,7 @@ def getSerialPorts():
     return comPorts, comPort
 
 
-# Sets the COM port the Arduino is connected to or shows an error message if not working
+# Sets the COM port the Arduino is connected to automatically or requests manual COM port input from user if not working
 #
 while(not arduinoConnected):
     try:
