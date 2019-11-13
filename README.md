@@ -18,11 +18,11 @@ It has been tested sucessfully with following setup:
 
 * Python package management system up to date (python -m pip install --upgrade pip)
 
-* Python modules installed:
+* Install the following python modules by opening a command line window and type:
 
-      PySerial (pip install pyserial)
-      PySimpleGUIQt (pip install pysimpleguiqt)
-      PySide2 (pip install PySide2)
+      pip install pyserial
+      pip install pysimpleguiqt
+      pip install PySide2
 
 ## Prerequisites for the Arduino part of the project
 
