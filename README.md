@@ -58,7 +58,7 @@ The RGB LED should be connected to the Arduino UNO as follows:
       
       python rgb_control_gui.py
 
-* The GUI will start
+  The GUI will start
       
 * The COM port your Arduino is connected to should be detected automatically - if this fails you can enter the COM port manually. A list of available hardware serial ports will show up in a popup window.
 * Click the buttons in the GUI. The color of the RGB LED should change accordingly.
