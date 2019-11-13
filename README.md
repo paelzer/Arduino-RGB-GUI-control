@@ -30,12 +30,6 @@ It has been tested sucessfully with following setup:
 
 * Flash the rgb_control.ino file to the Arduino Uno
 
-* The RGB LED should be connected to the Arduino UNO as follows:
-
-      LED pin for red connected to Arduino pin 9
-      LED pin for green connected to Arduino pin 10
-      LED pin for blue connected to Arduino pin 11
-      LED ground pin to Arduino GND pin 
 
 * Connect the Arduino via USB to your PC or notebook
 
@@ -45,16 +39,18 @@ Required hardware components:
       3x Resistor 220 Ohm
       RGB LED (common cathode - type)
       Arduino UNO
+      
+* The RGB LED should be connected to the Arduino UNO as follows:
+
+      LED pin for red connected to Arduino pin 9
+      LED pin for green connected to Arduino pin 10
+      LED pin for blue connected to Arduino pin 11
+      LED ground pin to Arduino GND pin       
 
 <b>Click to enlarge:</b> 
 </br> </br>
 <img src="https://i.imgur.com/NEBTWak.png" width="600">
 
-Required hardware components:
-
-      3x Resistor 220 Ohm
-      RGB LED (common cathode - type)
-      Arduino UNO
 
 ## Start the Python GUI
 
