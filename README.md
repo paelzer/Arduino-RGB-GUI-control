@@ -40,7 +40,7 @@ Required hardware components:
       RGB LED (common cathode - type)
       Arduino UNO
       
-* The RGB LED should be connected to the Arduino UNO as follows:
+The RGB LED should be connected to the Arduino UNO as follows:
 
       LED pin for red connected to Arduino pin 9
       LED pin for green connected to Arduino pin 10
